@@ -25,6 +25,8 @@ cliente = adiciona_clientes("luiz")
 adiciona_clientes("Ciclano", cliente)
 adiciona_clientes("Ciclano2", cliente)
 adiciona_clientes("Ciclano3", cliente)
+cliente.append("Qualquer")
+cliente.append("Qualquer0")
 print(cliente)
 
 print()
