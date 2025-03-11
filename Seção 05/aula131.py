@@ -32,5 +32,5 @@ class Caneta:
         return self.cor_tinta
 
 
-Caneta = Caneta("Azul")
-print(Caneta.get_cor())
+can = Caneta("Azul")
+print(can.cor())
