@@ -32,15 +32,24 @@ class Carro:
     def fabricante(self, valor):
         self._fabricante = valor
 
+    def __del__(self):
+        print("Apagando Carro: ", self.nome)
+
 
 class Motor:
     def __init__(self, nome):
         self.nome = nome
 
+    def __del__(self):
+        print("Apagando Motor: ", self.nome)
+
 
 class Fabricante:
     def __init__(self, nome):
         self.nome = nome
+
+    def __del__(self):
+        print("Apagando Fabricante: ", self.nome)
 
 
 fusca = Carro("Fusca")
@@ -67,3 +76,9 @@ motor_2_0 = Motor("2.0")
 focus.fabricante = ford
 focus.motor = motor_2_0
 print(focus.nome, focus.fabricante.nome, focus.motor.nome)
+
+del fusca, gol, fiat_uno, focus
+
+print()
+print("----------------------| FIM BLOCO CODIGO |----------------------")
+print()
