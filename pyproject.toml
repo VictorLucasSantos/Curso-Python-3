@@ -7,6 +7,8 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.12"
+pytz = "^2025.1"
+types-pytz = "^2025.1.0.20250318"
 
 
 [build-system]
