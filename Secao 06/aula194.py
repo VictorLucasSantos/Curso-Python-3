@@ -22,3 +22,16 @@ Comando de exemplo:
 Windows: ping 127.0.0.1
 Linux/Mac: ping 127.0.0.1 -c 4
 """
+
+import subprocess
+
+cmd = [
+    "ping",
+    "127.0.0.1",
+]
+
+proc = subprocess.run(cmd, capture_output=True, encoding="cp850")
+
+print(proc.args)
+print(proc.stderr)
+print(proc.stdout)
