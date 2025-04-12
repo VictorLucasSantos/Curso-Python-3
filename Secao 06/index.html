@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Progresso</title>
+  <style>
+    body {
+      background-color: #0d1117;
+      color: #c9d1d9;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      text-align: center;
+      padding: 40px;
+    }
+
+    .capture-area {
+      width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .python-icon {
+      width: 60px;
+      height: auto;
+      margin-bottom: 10px;
+      fill: #c9d1d9;
+    }
+
+    h1 {
+      color: #58a6ff;
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      color: #8b949e;
+      font-weight: 400;
+      font-size: 18px;
+      margin-top: 0;
+      margin-bottom: 40px;
+    }
+
+    .progress-container {
+      background-color: #21262d;
+      border-radius: 30px;
+      width: 100%;
+      height: 40px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      margin-bottom: 15px;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0;
+      background: linear-gradient(to right, #58a6ff, #1f6feb);
+      transition: width 1.2s ease-in-out;
+    }
+
+    .progress-text {
+      font-size: 20px;
+      color: #c9d1d9;
+      margin-bottom: 20px;
+    }
+
+    button {
+      background-color: #58a6ff;
+      color: white;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    button:hover {
+      background-color: #1f6feb;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="capture-area" id="capture-area">
+    <!-- Ícone Python monocromático -->
+    <svg class="python-icon" viewBox="0 0 256 255" xmlns="http://www.w3.org/2000/svg">
+      <path d="M126.916 0c-10.532.046-20.637.94-29.328 2.5-25.967 4.618-30.695 14.277-30.695 32.094v22.35h61.392v7.45H60.04c-17.866 0-33.565 10.738-38.297 31.132-5.61 24.097-5.85 39.172 0 64.816 4.387 19.054 14.904 31.132 32.77 31.132h21.153v-28.58c0-20.599 17.797-38.68 38.296-38.68h61.392c17.305 0 30.696-14.14 30.696-31.132V35.044c0-16.472-14.258-28.692-30.696-32.094C151.792 1.068 137.452-.045 126.916 0zm-34.93 19.062c5.134 0 9.312 4.252 9.312 9.5 0 5.236-4.178 9.48-9.312 9.48-5.134 0-9.3-4.244-9.3-9.48 0-5.248 4.166-9.5 9.3-9.5zM129.084 255c10.532-.046 20.637-.94 29.328-2.5 25.967-4.618 30.695-14.277 30.695-32.094v-22.35h-61.392v-7.45h67.245c17.866 0 33.565-10.738 38.297-31.132 5.61-24.097 5.85-39.172 0-64.816-4.387-19.054-14.904-31.132-32.77-31.132h-21.153v28.58c0 20.599-17.797 38.68-38.296 38.68h-61.392c-17.305 0-30.696 14.14-30.696 31.132v64.956c0 16.472 14.258 28.692 30.696 32.094 11.49 2.206 25.83 3.319 36.366 3.274zm34.93-19.062c-5.134 0-9.312-4.252-9.312-9.5 0-5.236 4.178-9.48 9.312-9.48 5.134 0 9.3 4.244 9.3 9.48 0 5.248-4.166 9.5-9.3 9.5z" fill="#c9d1d9"/>
+    </svg>
+
+    <h1>Progresso</h1>
+    <h2>Curso de Python 3 do básico ao avançado — com projetos reais</h2>
+
+    <div class="progress-wrapper">
+      <div class="progress-container">
+        <div class="progress-bar" id="bar"></div>
+      </div>
+      <div class="progress-text" id="text">Carregando progresso...</div>
+    </div>
+  </div>
+
+  <button id="generate-image-btn">Gerar Imagem</button>
+
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <script>
+    // Valores do progresso
+    const feito = 322;
+    const total = 760;
+    const porcentagem = ((feito / total) * 100).toFixed(1);
+
+    // Atualiza barra
+    const bar = document.getElementById('bar');
+    const text = document.getElementById('text');
+    bar.style.width = porcentagem + '%';
+    text.textContent = `${feito}/${total} concluído — ${porcentagem}%`;
+
+    // Função para gerar imagem
+    document.getElementById('generate-image-btn').addEventListener('click', function() {
+      html2canvas(document.getElementById('capture-area'), {
+        backgroundColor: null,
+        scale: 2,
+        logging: false,
+        useCORS: true
+      }).then(function(canvas) {
+        const link = document.createElement('a');
+        link.download = 'progresso-python.png';
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+      }).catch(function(error) {
+        console.error('Erro ao gerar imagem:', error);
+      });
+    });
+  </script>
+</body>
+</html>
