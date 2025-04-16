@@ -1,3 +1,4 @@
 venv
 .env
 mysql_206
+__pycache__
