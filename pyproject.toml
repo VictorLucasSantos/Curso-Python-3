@@ -6,7 +6,7 @@ authors = ["Victor Lucas <victorlucas.santos124@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.12"
+python = ">=3.12,<3.14"
 pytz = "^2025.1"
 types-pytz = "^2025.1.0.20250318"
 python-dateutil = "^2.9.0.post0"
@@ -17,6 +17,7 @@ bs4 = "^0.0.2"
 selenium = "^4.30.0"
 pypdf2 = {extras = ["image"], version = "^3.0.1"}
 openpyxl = "^3.1.5"
+pyside6 = "^6.9.0"
 
 
 [build-system]
