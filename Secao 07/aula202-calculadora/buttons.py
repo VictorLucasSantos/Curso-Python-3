@@ -11,3 +11,4 @@ class Button(QPushButton):
         font = self.font()
         font.setPixelSize(MEDIUM_FONT_SIZE)
         self.setFont(font)
+        self.setProperty("cssClass", "specialButton")
