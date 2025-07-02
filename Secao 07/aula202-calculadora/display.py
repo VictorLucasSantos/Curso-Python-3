@@ -28,9 +28,9 @@ class Display(QLineEdit):
         key = event.key()
         KEYS = Qt.Key
 
-        isEnter = key in [KEYS.Key_Enter, KEYS.Key_Return]
-        isDelete = key in [KEYS.Key_Backspace, KEYS.Key_Delete]
-        isEsc = key in [KEYS.Key_Escape]
+        isEnter = key in [KEYS.Key_Enter, KEYS.Key_Return, KEYS.Key_Equal]
+        isDelete = key in [KEYS.Key_Backspace, KEYS.Key_Delete, KEYS.Key_D]
+        isEsc = key in [KEYS.Key_Escape, KEYS.Key_C]
         isOperator = key in [
             KEYS.Key_Plus,
             KEYS.Key_Slash,
@@ -39,28 +39,33 @@ class Display(QLineEdit):
             KEYS.Key_P,
         ]
 
-        if isEnter or text == "=":
+        if isEnter:
             self.eqPressed.emit()
-            return event.ignore()
+            event.accept()
+            return
 
         if isOperator:
             if text.lower() == "p":
                 text = "^"
             self.operatorPressed.emit(text)
-            return event.ignore()
+            event.accept()
+            return
 
         if isEsc:
             self.clearPressed.emit()
-            return event.ignore()
+            event.ignore()
+            return
 
         if isDelete or text.lower() == "c":
             self.delPressed.emit()
-            return event.ignore()
+            event.accept()
+            return
 
         if isEmpty(text):
-            return event.ignore()
+            event.accept()
+            return
 
         if isNumOrDot(text):
-            print()
             self.inputPressed.emit(text)
-            return event.ignore()
+            event.accept()
+            return
