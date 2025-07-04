@@ -23,10 +23,10 @@ if __name__ == "__main__":
     display = Display()
     window.addWidgetToVLayout(display)
 
-    buttonsGrid = ButtonsGrid(display=display)
+    buttonsGrid = ButtonsGrid(display=display, info=info)
     buttonsGrid._makeGrid()
-    window.v_layout.addLayout(buttonsGrid)
+    window.vLayout.addLayout(buttonsGrid)
 
-    # window.adjustFixedSize()
+    window.adjustFixedSize()
     window.show()
     app.exec()
