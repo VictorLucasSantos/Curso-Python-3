@@ -3,9 +3,12 @@ from django.shortcuts import render
 
 def blogg(request):
     print("blogg")
-    return render(request, "blogg/index.html")
+    context = {"text": "Olá blog", "title": "Essa é uma página de blog "}
+    return render(request, "blogg/index.html", context)
 
 
 def example(request):
     print("example")
-    return render(request, "blogg/example.html")
+    context = {"text": "Olá example", "title": "Essa é uma página de exemplo "}
+
+    return render(request, "blogg/example.html", context)
