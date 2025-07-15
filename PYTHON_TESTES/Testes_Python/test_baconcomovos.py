@@ -13,20 +13,13 @@ Refactor
 Parte 3: Melhorar o código e ver o teste passar
 """
 
-# try:
-#     import sys
-#     import os
+try:
+    import sys
+    import os
 
-#     sys.path.append(
-#         os.path.abspath(
-#             os.path.join(
-#                 os.path.dirname(__file__),
-#                 '../src'
-#             )
-#         )
-#     )
-# except:
-#     raise
+    sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../src")))
+except:
+    raise
 
 import unittest
 from baconcomovos import bacon_com_ovos
