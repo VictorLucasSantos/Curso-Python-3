@@ -37,7 +37,7 @@ class IObservable(ABC):
 
 class WheaterStation(IObservable):
     def __init__(self):
-        self._obsevers = []
+        self._observers = []
         self._state = {}
 
     @property
@@ -57,15 +57,15 @@ class WheaterStation(IObservable):
         self.notify_observers()
 
     def add_observer(self, observer: IObserver):
-        self._obsevers.append(observer)
+        self._observers.append(observer)
 
     def remove_observer(self, observer: IObserver):
         if observer not in self._observers:
             return
-        self._obsevers.remove(observer)
+        self._observers.remove(observer)
 
     def notify_observers(self):
-        for observer in self._obsevers:
+        for observer in self._observers:
             observer.update()
         print()
 
@@ -85,8 +85,28 @@ class Smartphone(IObserver):
         observable_name = self.observable.__class__.__name__
         print(
             f"{self.name} o objeto {observable_name}"
-            f"acabou de ser atualizado => {self.observable.state}"
+            f" acabou de ser atualizado => {self.observable.state}"
         )
+
+
+class Notebook(IObserver):
+    def __init__(self, observable: IObservable):
+        self.observable = observable
+
+    # def update(self):
+    #     observable_name = self.observable.__class__.__name__
+    #     print(
+    #         f"{self.name} o objeto {observable_name}"
+    #         f" acabou de ser atualizado => {self.observable.state}"
+    #     )
+    def show(self):
+        print(
+            "Sou o notebook e vou fazer outra coisa com esses dados",
+            self.observable.state,
+        )
+
+    def update(self):
+        self.show()
 
 
 if __name__ == "__main__":
@@ -94,8 +114,14 @@ if __name__ == "__main__":
 
     smartphone = Smartphone("IPhone", wheater_station)
     outro_smartphone = Smartphone("OutroSmarphone", wheater_station)
+    notebook = Notebook(wheater_station)
 
     wheater_station.add_observer(smartphone)
     wheater_station.add_observer(outro_smartphone)
+    wheater_station.add_observer(notebook)
 
     wheater_station.state = {"temperature": "30"}
+    wheater_station.state = {"temperature": "32"}
+
+    wheater_station.remove_observer(outro_smartphone)
+    wheater_station.reset_state()
